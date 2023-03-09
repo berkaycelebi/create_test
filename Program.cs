@@ -20,7 +20,9 @@ namespace create_test
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseKestrel().UseUrls("https://*:8001","http://*:8002") . UseStartup<Startup>();
+                    webBuilder.UseKestrel(conf=>{
+                        conf.ListenAnyIP(8002);
+                    }).UseUrls("https://*:8001","http://*:8002") . UseStartup<Startup>();
                 });
     }
 }
